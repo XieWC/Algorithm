@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 /*
- *  ��̬�滮(dynamic programming)�����ǣ�ÿ�ξ��������ڵ�ǰ״̬�����漴����״̬��ת�ơ�һ���������о����ڱ仯��״̬�в��������ģ�
- *  ���ԣ����ֶ�׶����Ż����߽������Ĺ��̾ͳ�Ϊ��̬�滮��
- *  ����˼������η����ƣ�Ҳ�ǽ�����������ֽ�Ϊ���ɸ������⣨�׶Σ�����˳������ӽ׶Σ�ǰһ������Ľ⣬Ϊ��һ�����������ṩ�����õ���Ϣ��
- *  �������һ������ʱ���г����ֿ��ܵľֲ��⣬ͨ�����߱�����Щ�п��ܴﵽ���ŵľֲ��⣬���������ֲ��⡣���ν���������⣬���һ����������ǳ�ʼ����Ľ⡣
- ���ڶ�̬�滮���������������ص�����������ص㣬Ϊ�����ظ����㣬��ÿһ��������ֻ��һ�Σ����䲻ͬ�׶εĲ�ͬ״̬������һ����ά�����С�
- ����η����Ĳ���ǣ��ʺ����ö�̬�滮���������⣬���ֽ��õ����������������ǻ�������ģ�����һ���ӽ׶ε�����ǽ�������һ���ӽ׶εĽ�Ļ����ϣ����н�һ������⣩��
+ *  动态规划(dynamic programming)过程是：每次决策依赖于当前状态，又随即引起状态的转移。一个决策序列就是在变化的状态中产生出来的，
+ *  所以，这种多阶段最优化决策解决问题的过程就称为动态规划；
+ *  基本思想与分治法类似，也是将待求解的问题分解为若干个子问题（阶段），按顺序求解子阶段，前一子问题的解，为后一子问题的求解提供了有用的信息。
+ *  在求解任一子问题时，列出各种可能的局部解，通过决策保留那些有可能达到最优的局部解，丢弃其他局部解。依次解决各子问题，最后一个子问题就是初始问题的解。
+ 由于动态规划解决的问题多数有重叠子问题这个特点，为减少重复计算，对每一个子问题只解一次，将其不同阶段的不同状态保存在一个二维数组
+ 与分治法最大的差别是：适合于用动态规划法求解的问题，经分解后得到的子问题往往不是互相独立的（即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解）。
 
  */
 public class TestDP {
@@ -31,14 +31,14 @@ public class TestDP {
 		//
 		// int[] a = { 1, 4, 6, 2, 3, 5, 7, 8, -2 };
 		//
-		// // ���Գ�����������������LISDP n2
+		// // 测试程序：输出最长递增子序列LISDP n2
 		// System.out.println("===" + LISDP(a));
 
 		// System.out.println(editdis("kitten", "sitting")); // 3
 	}
 
-	// ��һ��������ݹ� Fibonacci
-	// ���ڶ�̬�滮���������������ص�����������ص㣬Ϊ�����ظ����㣬��ÿһ��������ֻ��һ�Σ����䲻ͬ�׶εĲ�ͬ״̬������һ����ά�����С�
+	// 用一个表代替递归 Fibonacci
+	// 由于动态规划解决的问题多数有重叠子问题这个特点，为减少重复计算，对每一个子问题只解一次，将其不同阶段的不同状态保存在一个二维数组中。
 	public static int fib1(int n) {
 		if (n <= 1) {
 			return 1;
@@ -74,7 +74,7 @@ public class TestDP {
 		return arr[n];
 	}
 
-	// ��һ��������ݹ�
+	// 用一个表代替递归
 	public static double eval(int n) {
 		if (n == 0) {
 			return 1.0;
@@ -99,7 +99,7 @@ public class TestDP {
 		return arr[n];
 	}
 
-	// ¥���벣���� ��̬�滮
+	// 楼房与玻璃球 动态规划
 	public static int getFloor(int sum) {
 		int n = 1;
 		out: for (; n < sum; n++) {
@@ -116,7 +116,7 @@ public class TestDP {
 	}
 
 	@Test
-	// �����������ֵΪ1Ԫ��3Ԫ��5Ԫ��Ӳ������ö����������ٵ�Ӳ�Ҵչ�11Ԫ��
+	// 如果我们有面值为1元、3元和5元的硬币若干枚，如何用最少的硬币凑够11元？
 	public void findCoin() {
 		int[] cons = new int[11 + 1];
 		for (int i = 1; i <= 11; i++) {
@@ -142,7 +142,7 @@ public class TestDP {
 
 	}
 
-	// 1. ����������У�LCS�������Բ�����
+	// 1. 最长公共子序列（LCS）：可以不连续
 	public static int LCS(String str1, String str2) {
 		int length1 = str1.length();
 		int length2 = str2.length();
@@ -211,7 +211,7 @@ public class TestDP {
 		}
 	}
 
-	// ��������ַ�����LCS������������
+	// 最长公共子字符串（LCS）：必须连续
 	public static int LCString(String str1, String str2) {
 		int length1 = str1.length();
 		int length2 = str2.length();
@@ -256,7 +256,7 @@ public class TestDP {
 		return longest;
 	}
 
-	// 3.����������У�LIS������̬�滮n2�ⷨ
+	// 3.最长递增子序列（LIS）：动态规划n2解法
 	public static int LISDP(int[] arr) {
 		int length = arr.length;
 		int[] dp = new int[length];
@@ -277,7 +277,7 @@ public class TestDP {
 		return sum;
 	}
 
-	// 4.�༭�������⣺
+	// 4.编辑距离问题：
 	public static int editdis(String str1, String str2) {
 		int strLength1 = str1.length();
 		int strLength2 = str2.length();
