@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+  author: XIEWC
+  author: XIEWC
  * http://blog.csdn.net/luckyxiaoqiang/article/details/7393134 轻松搞定面试中的链表题目
  * http://www.cnblogs.com/jax/archive/2009/12/11/1621504.html 算法大全（1）单链表
  * 
