@@ -8,23 +8,24 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- * TODO: Ò»¶¨ÒªÄÜÊìÁ·µØĞ´³öËùÓĞÎÊÌâµÄµİ¹éºÍ·Çµİ¹é×ö·¨£¡
+ * TODO: ä¸€å®šè¦èƒ½ç†Ÿç»ƒåœ°å†™å‡ºæ‰€æœ‰é—®é¢˜çš„é€’å½’å’Œéé€’å½’åšæ³•ï¼
  * 
- * 1. Çó¶ş²æÊ÷ÖĞµÄ½Úµã¸öÊı: getNodeNumRec£¨µİ¹é£©£¬getNodeNum£¨µü´ú£© 2.
- * Çó¶ş²æÊ÷µÄÉî¶È:getDepthRec£¨µİ¹é£©£¬getDepth 3. Ç°Ğò±éÀú£¬ÖĞĞò±éÀú£¬ºóĞò±éÀú:
+ * 1. æ±‚äºŒå‰æ ‘ä¸­çš„èŠ‚ç‚¹ä¸ªæ•°: getNodeNumRecï¼ˆé€’å½’ï¼‰ï¼ŒgetNodeNumï¼ˆè¿­ä»£ï¼‰ 2.
+ * æ±‚äºŒå‰æ ‘çš„æ·±åº¦:getDepthRecï¼ˆé€’å½’ï¼‰ï¼ŒgetDepth 3. å‰åºéå†ï¼Œä¸­åºéå†ï¼Œååºéå†:
  * preorderTraversalRec,preorderTraversal, inorderTraversalRec,
  * postorderTraversalRec
  * (https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_2)
- * 4.·Ö²ã±éÀú¶ş²æÊ÷£¨°´²ã´Î´ÓÉÏÍùÏÂ£¬´Ó×óÍùÓÒ£©: levelTraversal, levelTraversalRec£¨µİ¹é½â·¨£¡£©
- * 5.½«¶ş²æ²éÕÒÊ÷±äÎªÓĞĞòµÄË«ÏòÁ´±í: convertBST2DLLRec, convertBST2DLL
- * 6.Çó¶ş²æÊ÷µÚK²ãµÄ½Úµã¸öÊı£ºgetNodeNumKthLevelRec, getNodeNumKthLevel
- * 7.Çó¶ş²æÊ÷ÖĞÒ¶×Ó½ÚµãµÄ¸öÊı£ºgetNodeNumLeafRec, getNodeNumLeaf
- * 8.ÅĞ¶ÏÁ½¿Ã¶ş²æÊ÷ÊÇ·ñÏàÍ¬µÄÊ÷£ºisSameRec,isSame 9. ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÆ½ºâ¶ş²æÊ÷£ºisAVLRec
- * 10.Çó¶ş²æÊ÷µÄ¾µÏñ£¨ÆÆ»µºÍ²»ÆÆ»µÔ­À´µÄÊ÷Á½ÖÖÇé¿ö£©£ºmirrorRec,mirrorCopyRec
- * 10.1ÅĞ¶ÏÁ½¸öÊ÷ÊÇ·ñ»¥Ïà¾µÏñ£ºisMirrorRec 11.Çó¶ş²æÊ÷ÖĞÁ½¸ö½ÚµãµÄ×îµÍ¹«¹²×æÏÈ½Úµã£ºgetLastCommonParent,
+ * 4.åˆ†å±‚éå†äºŒå‰æ ‘ï¼ˆæŒ‰å±‚æ¬¡ä»ä¸Šå¾€ä¸‹ï¼Œä»å·¦å¾€å³ï¼‰: levelTraversal, levelTraversalRecï¼ˆé€’å½’è§£æ³•ï¼ï¼‰
+ * 5.å°†äºŒå‰æŸ¥æ‰¾æ ‘å˜ä¸ºæœ‰åºçš„åŒå‘é“¾è¡¨: convertBST2DLLRec, convertBST2DLL
+ * 6.æ±‚äºŒå‰æ ‘ç¬¬Kå±‚çš„èŠ‚ç‚¹ä¸ªæ•°ï¼šgetNodeNumKthLevelRec, getNodeNumKthLevel
+ * 7.æ±‚äºŒå‰æ ‘ä¸­å¶å­èŠ‚ç‚¹çš„ä¸ªæ•°ï¼šgetNodeNumLeafRec, getNodeNumLeaf
+ * 8.åˆ¤æ–­ä¸¤æ£µäºŒå‰æ ‘æ˜¯å¦ç›¸åŒçš„æ ‘ï¼šisSameRec,isSame 9. åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å¹³è¡¡äºŒå‰æ ‘ï¼šisAVLRec
+ * 10.æ±‚äºŒå‰æ ‘çš„é•œåƒï¼ˆç ´åå’Œä¸ç ´ååŸæ¥çš„æ ‘ä¸¤ç§æƒ…å†µï¼‰ï¼šmirrorRec,mirrorCopyRec
+ * 10.1åˆ¤æ–­ä¸¤ä¸ªæ ‘æ˜¯å¦äº’ç›¸é•œåƒï¼šisMirrorRec 11.æ±‚äºŒå‰æ ‘ä¸­ä¸¤ä¸ªèŠ‚ç‚¹çš„æœ€ä½å…¬å…±ç¥–å…ˆèŠ‚ç‚¹ï¼šgetLastCommonParent,
  * getLastCommonParentRec, getLastCommonParentRec2
- * 12.Çó¶ş²æÊ÷ÖĞ½ÚµãµÄ×î´ó¾àÀë£ºgetMaxDistanceRec 13.ÓÉÇ°Ğò±éÀúĞòÁĞºÍÖĞĞò±éÀúĞòÁĞÖØ½¨¶ş²æÊ÷£ºrebuildBinaryTreeRec
- * 14.ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÍêÈ«¶ş²æÊ÷£ºisCompleteBinaryTree, isCompleteBinaryTreeRec
+ * 12.æ±‚äºŒå‰æ ‘ä¸­èŠ‚ç‚¹çš„æœ€å¤§è·ç¦»ï¼šgetMaxDistanceRec 13.ç”±å‰åºéå†åºåˆ—å’Œä¸­åºéå†åºåˆ—é‡å»ºäºŒå‰æ ‘ï¼šrebuildBinaryTreeRec
+ * 14.åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å®Œå…¨äºŒå‰æ ‘ï¼šisCompleteBinaryTree, isCompleteBinaryTreeRec
+ add
  */
 public class MyDemo {
 	public static void main(String[] args) {
@@ -45,10 +46,10 @@ public class MyDemo {
 		r2.left = r4;
 		r2.right = r5;
 		r3.left = r6;
-		System.out.println("NodeNumber:" + getNodeNumRec(r1));// 1. Çó¶ş²æÊ÷ÖĞµÄ½Úµã¸öÊı
+		System.out.println("NodeNumber:" + getNodeNumRec(r1));// 1. æ±‚äºŒå‰æ ‘ä¸­çš„èŠ‚ç‚¹ä¸ªæ•°
 		System.out.println("maxDeep:" + getDeptRec(r1));// 2.
-														// Çó¶ş²æÊ÷µÄÉî¶È:getDepthRec£¨µİ¹é£©£¬getDepth
-		// preOrder(r1);//±éÀúËã·¨
+														// æ±‚äºŒå‰æ ‘çš„æ·±åº¦:getDepthRecï¼ˆé€’å½’ï¼‰ï¼ŒgetDepth
+		// preOrder(r1);//éå†ç®—æ³•
 		// System.out.println();
 		// inOrder(r1);
 		// System.out.println();
@@ -57,26 +58,26 @@ public class MyDemo {
 		// levelTraversal(r1);
 		// System.out.println();
 		// deepTraversal(r1);
-		// converseBSTtoDLL(r1);//5½«¶ş²æ²éÕÒÊ÷±äÎªÓĞĞòµÄË«ÏòÁ´±í
+		// converseBSTtoDLL(r1);//5å°†äºŒå‰æŸ¥æ‰¾æ ‘å˜ä¸ºæœ‰åºçš„åŒå‘é“¾è¡¨
 		// while (head != null) {
 		// System.out.print(head.val + " ");
 		// head = head.right;
 		// }
 		// System.out.print(getNodeNumKthLevelRec(r1,
-		// 2));//Çó¶ş²æÊ÷µÚK²ãµÄ½Úµã¸öÊı£ºgetNodeNumKthLevelRec, getNodeNumKthLevel
+		// 2));//æ±‚äºŒå‰æ ‘ç¬¬Kå±‚çš„èŠ‚ç‚¹ä¸ªæ•°ï¼šgetNodeNumKthLevelRec, getNodeNumKthLevel
 		// System.out.print(getNodeNumLeafRec(r3)); //
-		// 7.Çó¶ş²æÊ÷ÖĞÒ¶×Ó½ÚµãµÄ¸öÊı£ºgetNodeNumLeafRec,// getNodeNumLeaf
-		// 8.ÅĞ¶ÏÁ½¿Ã¶ş²æÊ÷ÊÇ·ñÏàÍ¬µÄÊ÷£ºisSameRec,isSame
+		// 7.æ±‚äºŒå‰æ ‘ä¸­å¶å­èŠ‚ç‚¹çš„ä¸ªæ•°ï¼šgetNodeNumLeafRec,// getNodeNumLeaf
+		// 8.åˆ¤æ–­ä¸¤æ£µäºŒå‰æ ‘æ˜¯å¦ç›¸åŒçš„æ ‘ï¼šisSameRec,isSame
 		// System.out.println(isSameRec(r1, r2));
-		// 9. ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÆ½ºâ¶ş²æÊ÷£ºisAVLRec
+		// 9. åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å¹³è¡¡äºŒå‰æ ‘ï¼šisAVLRec
 		// System.out.println(isAVLRec(r1));
-		// 10.Çó¶ş²æÊ÷µÄ¾µÏñ£¨ÆÆ»µºÍ²»ÆÆ»µÔ­À´µÄÊ÷Á½ÖÖÇé¿ö£©
+		// 10.æ±‚äºŒå‰æ ‘çš„é•œåƒï¼ˆç ´åå’Œä¸ç ´ååŸæ¥çš„æ ‘ä¸¤ç§æƒ…å†µï¼‰
 		// mirrorRec(r1);
 		// levelTraversal(r1);
 		// System.out.println();
 		// // levelTraversal(mirrorRec2(r1));
 		// System.out.println("isMirror:" + isMirror(r1, mirrorRec2(r1)));
-		// 11.Çó¶ş²æÊ÷ÖĞÁ½¸ö½ÚµãµÄ×îµÍ¹«¹²×æÏÈ½Úµã£ºgetLastCommonParent, * getLastCommonParentRec,
+		// 11.æ±‚äºŒå‰æ ‘ä¸­ä¸¤ä¸ªèŠ‚ç‚¹çš„æœ€ä½å…¬å…±ç¥–å…ˆèŠ‚ç‚¹ï¼šgetLastCommonParent, * getLastCommonParentRec,
 		// getLastCommonParentRec2
 		// if (isNode(r1, r4) && isNode(r1, r5)) {
 		// TreeNode tree = getLastCommonParent(r1, r4, r5);
@@ -84,10 +85,10 @@ public class MyDemo {
 		// } else {
 		// System.out.println("none");
 		// }
-		// 12.Çó¶ş²æÊ÷ÖĞ½ÚµãµÄ×î´ó¾àÀë£ºgetMaxDistanceRec
+		// 12.æ±‚äºŒå‰æ ‘ä¸­èŠ‚ç‚¹çš„æœ€å¤§è·ç¦»ï¼šgetMaxDistanceRec
 		// System.out.println(getMaxDistanceRec(r2));
-		// 13.ÓÉÇ°Ğò±éÀúĞòÁĞºÍÖĞĞò±éÀúĞòÁĞÖØ½¨¶ş²æÊ÷£ºrebuildBinaryTreeRec
-		// preOrder(r1);// ±éÀúËã·¨//1 2 4 5 3 6
+		// 13.ç”±å‰åºéå†åºåˆ—å’Œä¸­åºéå†åºåˆ—é‡å»ºäºŒå‰æ ‘ï¼šrebuildBinaryTreeRec
+		// preOrder(r1);// éå†ç®—æ³•//1 2 4 5 3 6
 		// // 4 2 5 1 3 6
 		// System.out.println();
 		// inOrder(r1);
@@ -101,7 +102,7 @@ public class MyDemo {
 		// Arrays.asList(1, 2, 4, 5, 3, 6),
 		// Arrays.asList(4, 2, 5, 1, 3, 6));
 		// levelTraversal(newTreeNode);
-		// 14.ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÍêÈ«¶ş²æÊ÷£ºisCompleteBinaryTree, isCompleteBinaryTreeRec
+		// 14.åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å®Œå…¨äºŒå‰æ ‘ï¼šisCompleteBinaryTree, isCompleteBinaryTreeRec
 		System.out.println(isCompleteBinaryTree(r1));
 	}
 
@@ -118,7 +119,7 @@ public class MyDemo {
 	// private static int count;
 	// private static int maxDeep;
 
-	// 1. Çó¶ş²æÊ÷ÖĞµÄ½Úµã¸öÊı
+	// 1. æ±‚äºŒå‰æ ‘ä¸­çš„èŠ‚ç‚¹ä¸ªæ•°
 	// public static int getNodeNumRec(TreeNode root) {
 	// if (root == null) {
 	// return count;
@@ -137,7 +138,7 @@ public class MyDemo {
 		return getNodeNumRec(root.left) + getNodeNumRec(root.right) + 1;
 	}
 
-	// 2. Çó¶ş²æÊ÷µÄÉî¶È:getDepthRec£¨µİ¹é£©£¬getDepth
+	// 2. æ±‚äºŒå‰æ ‘çš„æ·±åº¦:getDepthRecï¼ˆé€’å½’ï¼‰ï¼ŒgetDepth
 	// public static int getDeptRec(TreeNode root, int count) {
 	// if (root == null) {
 	// return maxDeep;
@@ -159,7 +160,7 @@ public class MyDemo {
 		return Math.max(getDeptRec(root.left), getDeptRec(root.right)) + 1;
 	}
 
-	// 3. Ç°Ğò±éÀú£¬ÖĞĞò±éÀú£¬ºóĞò±éÀú:
+	// 3. å‰åºéå†ï¼Œä¸­åºéå†ï¼Œååºéå†:
 	public static void preOrder(TreeNode root) {
 		if (root == null) {
 			return;
@@ -187,7 +188,7 @@ public class MyDemo {
 		System.out.print(root.val + " ");
 	}
 
-	// 4.·Ö²ã±éÀú¶ş²æÊ÷£¨°´²ã´Î´ÓÉÏÍùÏÂ£¬´Ó×óÍùÓÒ£©:
+	// 4.åˆ†å±‚éå†äºŒå‰æ ‘ï¼ˆæŒ‰å±‚æ¬¡ä»ä¸Šå¾€ä¸‹ï¼Œä»å·¦å¾€å³ï¼‰:
 	public static void levelTraversal(TreeNode root) {
 		if (root == null) {
 			return;
@@ -206,7 +207,7 @@ public class MyDemo {
 		}
 	}
 
-	// Éî¶ÈÓÅÏÈ±éÀú
+	// æ·±åº¦ä¼˜å…ˆéå†
 	public static void deepTraversal(TreeNode root) {
 		if (root == null) {
 			return;
@@ -225,7 +226,7 @@ public class MyDemo {
 		}
 	}
 
-	// 5½«¶ş²æ²éÕÒÊ÷±äÎªÓĞĞòµÄË«ÏòÁ´±í
+	// 5å°†äºŒå‰æŸ¥æ‰¾æ ‘å˜ä¸ºæœ‰åºçš„åŒå‘é“¾è¡¨
 	private static TreeNode head;
 	private static TreeNode tail;
 
@@ -250,7 +251,7 @@ public class MyDemo {
 		}
 	}
 
-	// 6.Çó¶ş²æÊ÷µÚK²ãµÄ½Úµã¸öÊı£ºgetNodeNumKthLevelRec, getNodeNumKthLevel
+	// 6.æ±‚äºŒå‰æ ‘ç¬¬Kå±‚çš„èŠ‚ç‚¹ä¸ªæ•°ï¼šgetNodeNumKthLevelRec, getNodeNumKthLevel
 	public static int getNodeNumKthLevelRec(TreeNode root, int k) {
 		if (root == null || k < 1) {
 			return 0;
@@ -262,7 +263,7 @@ public class MyDemo {
 				+ getNodeNumKthLevelRec(root.right, k - 1);
 	}
 
-	// 7.Çó¶ş²æÊ÷ÖĞÒ¶×Ó½ÚµãµÄ¸öÊı£ºgetNodeNumLeafRec, getNodeNumLeaf
+	// 7.æ±‚äºŒå‰æ ‘ä¸­å¶å­èŠ‚ç‚¹çš„ä¸ªæ•°ï¼šgetNodeNumLeafRec, getNodeNumLeaf
 	public static int getNodeNumLeafRec(TreeNode root) {
 		if (root == null) {
 			return 0;
@@ -273,7 +274,7 @@ public class MyDemo {
 		return getNodeNumLeafRec(root.left) + getNodeNumLeafRec(root.right);
 	}
 
-	// 8.ÅĞ¶ÏÁ½¿Ã¶ş²æÊ÷ÊÇ·ñÏàÍ¬µÄÊ÷£ºisSameRec,isSame
+	// 8.åˆ¤æ–­ä¸¤æ£µäºŒå‰æ ‘æ˜¯å¦ç›¸åŒçš„æ ‘ï¼šisSameRec,isSame
 	public static boolean isSameRec(TreeNode p, TreeNode q) {
 		if (p == null && q == null) {
 			return true;
@@ -287,7 +288,7 @@ public class MyDemo {
 
 	}
 
-	// 9. ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÆ½ºâ¶ş²æÊ÷£ºisAVLRec
+	// 9. åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å¹³è¡¡äºŒå‰æ ‘ï¼šisAVLRec
 	public static boolean isAVLRec(TreeNode root) {
 		if (root == null) {
 			return true;
@@ -298,8 +299,8 @@ public class MyDemo {
 		return isAVLRec(root.left) && isAVLRec(root.right);
 	}
 
-	// 10.Çó¶ş²æÊ÷µÄ¾µÏñ£¨ÆÆ»µºÍ²»ÆÆ»µÔ­À´µÄÊ÷Á½ÖÖÇé¿ö£©£ºmirrorRec,mirrorCopyRec
-	// * 10.1ÅĞ¶ÏÁ½¸öÊ÷ÊÇ·ñ»¥Ïà¾µÏñ£ºisMirrorRec
+	// 10.æ±‚äºŒå‰æ ‘çš„é•œåƒï¼ˆç ´åå’Œä¸ç ´ååŸæ¥çš„æ ‘ä¸¤ç§æƒ…å†µï¼‰ï¼šmirrorRec,mirrorCopyRec
+	// * 10.1åˆ¤æ–­ä¸¤ä¸ªæ ‘æ˜¯å¦äº’ç›¸é•œåƒï¼šisMirrorRec
 	public static void mirrorRec(TreeNode root) {
 		if (root == null) {
 			return;
@@ -334,7 +335,7 @@ public class MyDemo {
 		}
 	}
 
-	// 11.Çó¶ş²æÊ÷ÖĞÁ½¸ö½ÚµãµÄ×îµÍ¹«¹²×æÏÈ½Úµã£ºgetLastCommonParent,getLastCommonParentRec,
+	// 11.æ±‚äºŒå‰æ ‘ä¸­ä¸¤ä¸ªèŠ‚ç‚¹çš„æœ€ä½å…¬å…±ç¥–å…ˆèŠ‚ç‚¹ï¼šgetLastCommonParent,getLastCommonParentRec,
 	// getLastCommonParentRec2
 
 	public static TreeNode getLastCommonParent(TreeNode root, TreeNode p,
@@ -365,7 +366,7 @@ public class MyDemo {
 
 	}
 
-	// 12. * Çó¶ş²æÊ÷ÖĞ½ÚµãµÄ×î´ó¾àÀë£ºgetMaxDistanceRec
+	// 12. * æ±‚äºŒå‰æ ‘ä¸­èŠ‚ç‚¹çš„æœ€å¤§è·ç¦»ï¼šgetMaxDistanceRec
 	private static int count;
 
 	public static int getMaxDistanceRec(TreeNode root) {
@@ -382,7 +383,7 @@ public class MyDemo {
 		return count;
 	}
 
-	// 13.ÓÉÇ°Ğò±éÀúĞòÁĞºÍÖĞĞò±éÀúĞòÁĞÖØ½¨¶ş²æÊ÷£ºrebuildBinaryTreeRec
+	// 13.ç”±å‰åºéå†åºåˆ—å’Œä¸­åºéå†åºåˆ—é‡å»ºäºŒå‰æ ‘ï¼šrebuildBinaryTreeRec
 	public static TreeNode rebuildBinaryTreeRec(List<Integer> preOrder,
 			List<Integer> inOrder) {
 		List<Integer> leftPreOrder;
@@ -404,7 +405,7 @@ public class MyDemo {
 		return root;
 	}
 
-	// 14.ÅĞ¶Ï¶ş²æÊ÷ÊÇ²»ÊÇÍêÈ«¶ş²æÊ÷£ºisCompleteBinaryTree, isCompleteBinaryTreeRec
+	// 14.åˆ¤æ–­äºŒå‰æ ‘æ˜¯ä¸æ˜¯å®Œå…¨äºŒå‰æ ‘ï¼šisCompleteBinaryTree, isCompleteBinaryTreeRec
 	public static boolean isCompleteBinaryTree(TreeNode root) {
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.add(root);
